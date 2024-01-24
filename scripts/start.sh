@@ -1,8 +1,8 @@
 #!/bin/bash
 
 STARTCOMMAND="./PalServer.sh"
-LOADBACKUPCOMMAND="bash loadBackup.sh"
-SAVEBACKUPCOMMAND="bash saveBackup.sh"
+LOADBACKUPCOMMAND="bash /home/steam/steamcmd/scripts/loadBackup.sh"
+SAVEBACKUPCOMMAND="bash /home/steam/steamcmd/scripts/saveBackup.sh"
 
 if [ -n "${PORT}" ]; then
     STARTCOMMAND="${STARTCOMMAND} -port=${PORT}"
@@ -75,10 +75,6 @@ host: localhost
 port: ${RCON_PORT}
 password: ${ADMIN_PASSWORD}
 EOL
-
-printf "\e[0;32m*****CONFIGURING AWS CLI*****\e[0m\n"
-su aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-su aws configure set aws_access_key_id $AWS_SECRET_ACCESS_KEY
 
 printf "\e[0;32m*****LOADING LAST BACKUP*****\e[0m\n"
 su "${LOADBACKUPCOMMAND}"
